@@ -25,34 +25,32 @@ st.set_page_config(page_title="Treasury AI Assistant", layout="wide")
 st.title("📄 Treasury AI Assistant")
 st.caption("Ask questions about HKJC⭐.")
 
-# ✅ Session state
+# ✅ Maintain chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 def main():
     try:
+        # ✅ Load embeddings and vector store
         embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-
-        vectordb = Chroma(
-            persist_directory=persist_directory,
-            embedding_function=embedding
-        )
+        vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         retriever = vectordb.as_retriever()
 
-        # ✅ Correct `ChatOpenAI` config
+        # ✅ Use OpenAI completion model (not chat)
         llm = OpenAI(
+            model_name="text-davinci-003",
             temperature=0.3,
-            model_name="deepseek-chat",
-            openai_api_base="https://api.deepseek.com/v1",
-            api_key=os.environ["OPENAI_API_KEY"]
+            openai_api_key=os.environ["OPENAI_API_KEY"]
         )
 
+        # ✅ Setup RAG chain
         rag_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,
             retriever=retriever,
             return_source_documents=True
         )
 
+        # ✅ User input
         query = st.text_input("💬 Ask a question about your documents...", placeholder="e.g. What is the conclusion?")
         if query:
             with st.spinner("🤖 Thinking..."):
