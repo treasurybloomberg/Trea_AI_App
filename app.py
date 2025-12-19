@@ -22,8 +22,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("📄 PDF-Aware AI Assistant")
-st.caption("Ask questions about your PDF knowledge base (stored in ChromaDB).")
+st.title("📄 Treasury AI Assistant")
+st.caption("Ask questions about HKJC.")
 
 # Initialize chat history
 if "chat_history" not in st.session_state:
