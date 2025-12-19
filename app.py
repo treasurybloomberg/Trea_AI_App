@@ -6,8 +6,8 @@ from langchain.chat_models import ChatOpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
 # ✅ Read OpenAI config from Streamlit secrets
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-os.environ["OPENAI_API_BASE"] = st.secrets["OPENAI_API_BASE"]
+os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
+os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 
 # ✅ Path to Chroma vector DB
 persist_directory = "./chroma_db_combined"
