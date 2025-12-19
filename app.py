@@ -8,8 +8,8 @@
 
 import os
 import streamlit as st
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import OpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
