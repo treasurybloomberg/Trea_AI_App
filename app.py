@@ -1,3 +1,8 @@
+import openai
+print(openai.__version__)
+from openai import error
+print(error.APIError)  # ✅ should work
+
 import os
 import streamlit as st
 from langchain.vectorstores import Chroma
@@ -74,3 +79,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
