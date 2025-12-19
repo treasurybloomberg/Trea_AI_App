@@ -37,7 +37,7 @@ def main():
         # ✅ LLM
         llm = ChatOpenAI(
             temperature=0.3,
-            model_name="gpt-3.5-turbo",  # or "deepseek-chat"
+            model_name="deepseek-chat",  # or "deepseek-chat"
             openai_api_key=os.environ["OPENAI_API_KEY"],
             openai_api_base=os.environ["OPENAI_API_BASE"]
         )
