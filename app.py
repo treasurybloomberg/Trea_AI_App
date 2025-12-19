@@ -1,10 +1,18 @@
+# import os
+# import streamlit as st
+# from langchain.vectorstores import Chroma
+# from langchain.chains import ConversationalRetrievalChain
+# from langchain_openai import ChatOpenAI
+# from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+# from langchain.embeddings import HuggingFaceEmbeddings
+
 import os
 import streamlit as st
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
-from langchain_openai import ChatOpenAI
+from langchain.llms import OpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
-from langchain.embeddings import HuggingFaceEmbeddings
 
 # ✅ Read OpenAI config from Streamlit secrets or env
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
@@ -32,7 +40,7 @@ def main():
         retriever = vectordb.as_retriever()
 
         # ✅ Correct `ChatOpenAI` config
-        llm = ChatOpenAI(
+        llm = OpenAI(
             temperature=0.3,
             model_name="deepseek-chat",
             openai_api_base="https://api.deepseek.com/v1",
