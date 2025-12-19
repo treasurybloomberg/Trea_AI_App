@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 from langchain_community.vectorstores import Chroma
+from sentence_transformers import SentenceTransformer
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain_openai import ChatOpenAI
