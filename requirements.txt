@@ -2,7 +2,8 @@ streamlit
 langchain==0.0.319
 langchain-community
 langchain-openai
-chromadb
+#chromadb
+chromadb==0.4.14
 sentence-transformers
 pypdf
 
