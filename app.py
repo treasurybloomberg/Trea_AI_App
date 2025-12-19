@@ -14,8 +14,9 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.llms import OpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
-# ✅ Read OpenAI config from Streamlit secrets or env
+# ✅ Set up DeepSeek API with OpenAI-compatible endpoint
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
+os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"  # Add this line
 
 # ✅ Vector DB path
 persist_directory = "./chroma_db_1219"
@@ -36,11 +37,12 @@ def main():
         vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         retriever = vectordb.as_retriever()
 
-        # ✅ Use OpenAI completion model (not chat)
+        # ✅ Use DeepSeek via OpenAI-compatible endpoint
         llm = OpenAI(
-            model_name="text-davinci-003",
+            model_name="deepseek-chat",  # Change to a DeepSeek model 
             temperature=0.3,
-            openai_api_key=os.environ["OPENAI_API_KEY"]
+            openai_api_key=os.environ["OPENAI_API_KEY"],
+            openai_api_base=os.environ["OPENAI_API_BASE"]  # Add this line
         )
 
         # ✅ Setup RAG chain
