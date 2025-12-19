@@ -23,20 +23,20 @@ if "chat_history" not in st.session_state:
 
 def main():
     try:
-        # ✅ Use Chroma-compatible embedding function
-        embedding_function = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
+        # ✅ Use LangChain's HuggingFaceEmbeddings (now works with downgraded Chroma)
+        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
         # ✅ Load Chroma vector DB
         vectordb = Chroma(
             persist_directory=persist_directory,
-            embedding_function=embedding_function
+            embedding_function=embedding
         )
         retriever = vectordb.as_retriever()
 
-        # ✅ LLM (LangChain OpenAI wrapper)
+        # ✅ LLM
         llm = ChatOpenAI(
             temperature=0.3,
-            model_name="gpt-3.5-turbo",
+            model_name="gpt-3.5-turbo",  # or "deepseek-chat"
             openai_api_key=os.environ["OPENAI_API_KEY"],
             openai_api_base=os.environ["OPENAI_API_BASE"]
         )
@@ -48,7 +48,7 @@ def main():
             return_source_documents=True
         )
 
-        # ✅ User input
+        # ✅ Input and response
         query = st.text_input("💬 Ask a question about your documents...", placeholder="e.g. What is the conclusion?")
         if query:
             with st.spinner("🤖 Thinking..."):
