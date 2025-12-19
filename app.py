@@ -32,7 +32,7 @@ if "chat_history" not in st.session_state:
 def main():
     try:
         # ✅ Load vector DB and retriever
-        embedding = HuggingFaceEmbeddings(model_name=None, model=model)
+        embedding = HuggingFaceEmbeddings(model_name=None, model= SentenceTransformer("all-MiniLM-L6-v2"))
         vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         retriever = vectordb.as_retriever()
 
