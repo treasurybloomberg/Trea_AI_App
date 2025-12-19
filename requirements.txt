@@ -20,6 +20,5 @@ streamlit
 langchain==0.0.319
 openai==0.28.1
 sentence-transformers==2.2.2
-torch==1.13.1
-pypdf
-pdfplumber
+torch==1.13.1+cpu
+faiss-cpu==1.7.4
