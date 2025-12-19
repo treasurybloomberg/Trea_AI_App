@@ -10,7 +10,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 
 # ✅ Path to vector DB
-persist_directory = "./chroma_db"
+persist_directory = "./chroma_db_combined"
 
 # ✅ Streamlit UI setup
 st.set_page_config(page_title="PDF-Aware AI Assistant", layout="wide")
