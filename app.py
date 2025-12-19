@@ -4,6 +4,7 @@ from langchain.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+from langchain.embeddings import HuggingFaceEmbeddings
 
 # ✅ Read OpenAI config from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
