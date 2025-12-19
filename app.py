@@ -1,11 +1,11 @@
 import os
 import streamlit as st
 from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
-# ✅ Read OpenAI config from Streamlit secrets (recommended)
+# ✅ Read OpenAI config from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["OPENAI_API_BASE"] = st.secrets["OPENAI_API_BASE"]
 
@@ -23,22 +23,25 @@ if "chat_history" not in st.session_state:
 
 def main():
     try:
-        # ✅ Load embeddings (will run on CPU by default)
-        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        # ✅ Use Chroma-compatible embedding function
+        embedding_function = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
 
-        # ✅ Load persisted Chroma DB
-        vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
+        # ✅ Load Chroma vector DB
+        vectordb = Chroma(
+            persist_directory=persist_directory,
+            embedding_function=embedding_function
+        )
         retriever = vectordb.as_retriever()
 
-        # ✅ LLM config (ChatOpenAI from langchain==0.0.319)
+        # ✅ LLM (LangChain OpenAI wrapper)
         llm = ChatOpenAI(
             temperature=0.3,
-            model_name="gpt-3.5-turbo",  # or "deepseek-chat" if supported
+            model_name="gpt-3.5-turbo",
             openai_api_key=os.environ["OPENAI_API_KEY"],
             openai_api_base=os.environ["OPENAI_API_BASE"]
         )
 
-        # ✅ Build RAG chain
+        # ✅ RAG chain
         rag_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,
             retriever=retriever,
@@ -54,14 +57,11 @@ def main():
                     "chat_history": st.session_state.chat_history
                 })
 
-            # ✅ Store conversation
             st.session_state.chat_history.append((query, result["answer"]))
 
-            # ✅ Show answer
             st.markdown("### 🧠 Answer")
             st.success(result["answer"])
 
-            # ✅ Show source documents
             with st.expander("📄 Source Documents"):
                 for i, doc in enumerate(result["source_documents"]):
                     st.markdown(f"**Source {i+1}:**")
