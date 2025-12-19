@@ -13,7 +13,7 @@ os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 persist_directory = "./chroma_db_combined"
 
 # ✅ Streamlit UI setup
-st.set_page_config(page_title="PDF-Aware AI Assistant", layout="wide")
+st.set_page_config(page_title="Treasury AI Assistant", layout="wide")
 st.markdown("""
 <style>
 .block-container { padding-top: 2rem; }
