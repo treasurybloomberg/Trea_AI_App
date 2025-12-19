@@ -1,8 +1,9 @@
 import os
 import streamlit as st
 from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 
 # ✅ Load secrets from Streamlit Cloud or hardcoded for local dev
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
@@ -30,20 +31,12 @@ if "chat_history" not in st.session_state:
 
 def main():
     try:
-        # ✅ Use OpenAI-compatible embeddings (DeepSeek supports this)
-        embedding = OpenAIEmbeddings(
-            openai_api_key=os.environ["OPENAI_API_KEY"],
-            openai_api_base=os.environ["OPENAI_API_BASE"]
-        )
-
         # ✅ Load vector DB and retriever
-        vectordb = Chroma(
-            persist_directory=persist_directory,
-            embedding_function=embedding
-        )
+        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})
+        vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         retriever = vectordb.as_retriever()
 
-        # ✅ Load DeepSeek LLM
+        # ✅ Load LLM from DeepSeek
         llm = ChatOpenAI(
             model_name="deepseek-chat",
             temperature=0.3,
