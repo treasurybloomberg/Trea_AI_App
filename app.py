@@ -6,7 +6,7 @@ from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 
 # ✅ Load secrets from Streamlit Cloud
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
 os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 
 # ✅ Path to vector DB
