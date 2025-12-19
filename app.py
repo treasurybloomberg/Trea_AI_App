@@ -1,13 +1,9 @@
-import openai
-print(openai.__version__)
-from openai import error
-print(error.APIError)  # ✅ should work
-
 import os
 import streamlit as st
 from langchain.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
-from langchain.chat_models import ChatOpenAI
+#from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 from langchain.embeddings import HuggingFaceEmbeddings
 
