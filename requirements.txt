@@ -1,7 +1,7 @@
-streamlit
-langchain
-langchain-community
-langchain-openai
-chromadb
-sentence-transformers
-pypdf
+streamlit>=1.32
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-openai>=0.0.7
+chromadb>=0.4.22
+sentence-transformers>=2.2.2
+pypdf>=3.16.4
