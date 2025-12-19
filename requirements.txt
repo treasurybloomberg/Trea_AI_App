@@ -1,10 +1,19 @@
+# streamlit
+# langchain==0.0.319
+# langchain-community
+# langchain-openai
+# #chromadb
+# chromadb==0.4.14
+# sentence-transformers
+# pypdf
+# openai>=1.3.8
+
 streamlit
-langchain==0.0.319
-langchain-community
-langchain-openai
-#chromadb
+langchain==0.1.13
+langchain-community==0.0.19
+langchain-openai==0.0.6
 chromadb==0.4.14
 sentence-transformers
 pypdf
 openai>=1.3.8
-
+pdfplumber
