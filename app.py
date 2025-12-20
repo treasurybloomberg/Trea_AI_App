@@ -12,7 +12,7 @@ os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
 os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 
 # ✅ Vector DB path
-persist_directory = "./chroma_db_1219_4"
+persist_directory = "./chroma_db_1220_1"
 
 # ✅ Streamlit UI
 st.set_page_config(page_title="Treasury AI Assistant", layout="wide")
