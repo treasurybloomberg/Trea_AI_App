@@ -6,7 +6,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import create_qa_with_sources_chain
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
-import torch
 
 # ✅ Set up DeepSeek API with OpenAI-compatible endpoint
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
@@ -26,14 +25,8 @@ if "messages" not in st.session_state:
 
 def main():
     try:
-        # ✅ Load embeddings and vector store with explicit device setting
-        device = "cpu"  # Use CPU explicitly for compatibility
-        model_kwargs = {"device": device}
-        embedding = HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2",
-            model_kwargs=model_kwargs
-        )
-        
+        # ✅ Load embeddings and vector store
+        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         
         # ✅ Use ChatOpenAI instead of OpenAI
