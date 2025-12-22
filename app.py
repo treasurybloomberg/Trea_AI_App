@@ -272,7 +272,7 @@ def main():
             with st.chat_message("assistant"):
                 with st.spinner("Searching HKJC treasury documents..."):
                     # Simple retrieval (unchanged)
-                    docs = vectordb.similarity_search(user_query, k=3)
+                    docs = docs = vectordb.max_marginal_relevance_search(user_query, k=5, fetch_k=10)
                     
                     # Create context from retrieved documents (unchanged)
                     context = "\n\n".join([f"Document {i+1}:\n{doc.page_content}" for i, doc in enumerate(docs)])
