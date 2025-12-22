@@ -236,7 +236,8 @@ def main():
         # ✅ Use ChatOpenAI (unchanged)
         llm = ChatOpenAI(
             model="deepseek-chat",
-            temperature=0.3,
+            temperature=0.4,
+            max_tokens=500,
             openai_api_key=os.environ["OPENAI_API_KEY"],
             openai_api_base=os.environ["OPENAI_API_BASE"]
         )
@@ -280,6 +281,11 @@ def main():
                     prompt = f"""
 Based on the following information from documents, please answer the question.
 If the answer cannot be found in the documents, please say "I don't have enough information to answer that question."
+When answering:
+- Provide detailed explanations with specific data and examples from the documents
+- Structure your answer with clear sections when appropriate
+- Ensure your response is at least 3-4 paragraphs long for complex questions
+- Include relevant numbers, dates, and specific facts from the documents
 
 DOCUMENTS:
 {context}
