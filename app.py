@@ -16,7 +16,7 @@ persist_directory = "./chroma_db_1222_5"
 
 # ✅ Streamlit UI with enhanced configuration
 st.set_page_config(
-    page_title="HKJC Treasury Assistant", 
+    page_title="HKJC AI Assistant", 
     page_icon="🏇", 
     layout="wide",
     initial_sidebar_state="expanded"
@@ -190,7 +190,7 @@ def main():
     # Sidebar with helpful information
     with st.sidebar:
         st.image("https://upload.wikimedia.org/wikipedia/en/8/8f/The_Hong_Kong_Jockey_Club_logo.svg", width=80)
-        st.markdown("### HKJC Treasury Assistant")
+        st.markdown("### HKJC AI Assistant")
         st.markdown("---")
         
         st.markdown("""
@@ -223,7 +223,7 @@ def main():
         </div>
         <div class="header-title">
             <h1>HKJC Treasury Assistant</h1>
-            <p style="color: #666; margin: 0;">Your intelligent guide to HKJC treasury information</p>
+            <p style="color: #666; margin: 0;">Your intelligent guide to HKJC information</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -237,7 +237,7 @@ def main():
         llm = ChatOpenAI(
             model="deepseek-chat",
             temperature=0.4,
-            max_tokens=500,
+            max_tokens=600,
             openai_api_key=os.environ["OPENAI_API_KEY"],
             openai_api_base=os.environ["OPENAI_API_BASE"]
         )
@@ -256,7 +256,7 @@ def main():
         st.markdown('<div class="input-container">', unsafe_allow_html=True)
         
         # ✅ User input via chat input (unchanged)
-        user_query = st.chat_input("How can I help with HKJC treasury information today?")
+        user_query = st.chat_input("How can I help with HKJC information today?")
         
         st.markdown('</div>', unsafe_allow_html=True)
         
