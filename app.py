@@ -12,7 +12,7 @@ os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
 os.environ["OPENAI_API_BASE"] = "https://api.deepseek.com/v1"
 
 # ✅ Vector DB path
-persist_directory = "./chroma_db_1222_1"
+persist_directory = "./chroma_db_1222_2"
 
 # ✅ Streamlit UI
 st.set_page_config(page_title="Treasury AI Assistant", layout="wide")
@@ -26,7 +26,7 @@ if "messages" not in st.session_state:
 def main():
     try:
         # ✅ Load embeddings and vector store
-        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2",model_kwargs={"device": "cpu"}, encode_kwargs={"normalize_embeddings": True})
         vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         
         # ✅ Use ChatOpenAI instead of OpenAI
