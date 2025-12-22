@@ -282,13 +282,13 @@ def main():
 Based on the following information from documents, please answer the question.
 If the answer cannot be found in the documents, please say "I don't have enough information to answer that question."
 When answering:
-- Provide detailed explanations with specific data and examples from the documents
-- Structure your answer with clear sections when appropriate
-- Ensure your response is at least 3-4 paragraphs long for complex questions
-- Include relevant numbers, dates, and specific facts from the documents
-- Ensure proper formatting for numbers, currency values, and percentages
-- Make sure any lists or bullet points are properly formatted
-- Complete all points and thoughts without cutting off mid-sentence
+- **Use clear section headings** to organize your response (e.g., "Financial Overview", "Comparative Analysis", etc.)
+- **Use bullet points or numbered lists** where appropriate for clarity
+- **Include specific numbers, dates, and financial figures** mentioned in the documents (e.g., HK$ values, percentages)
+- **Format all currency (e.g., HK$), numbers, and percentages properly**
+- Ensure your answer is **detailed (3–4 paragraphs)** for complex questions
+- Do **not** overuse markdown like `*italic*` or `**bold**` inside long sentences
+- Always **complete your thoughts and sections**, avoiding cutoff responses
 
 DOCUMENTS:
 {context}
