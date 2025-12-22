@@ -289,6 +289,7 @@ When answering:
 - Ensure your answer is **detailed (3–4 paragraphs)** for complex questions
 - Do **not** overuse markdown like `*italic*` or `**bold**` inside long sentences
 - Always **complete your thoughts and sections**, avoiding cutoff responses
+- Avoid combining multiple values into one phrase like **"milliontoHK"**
 
 DOCUMENTS:
 {context}
