@@ -26,7 +26,7 @@ if "messages" not in st.session_state:
 def main():
     try:
         # ✅ Load embeddings and vector store
-        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})
+        embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding)
         
         # ✅ Use ChatOpenAI instead of OpenAI
