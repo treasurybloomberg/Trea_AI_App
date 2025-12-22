@@ -286,6 +286,9 @@ When answering:
 - Structure your answer with clear sections when appropriate
 - Ensure your response is at least 3-4 paragraphs long for complex questions
 - Include relevant numbers, dates, and specific facts from the documents
+- Ensure proper formatting for numbers, currency values, and percentages
+- Make sure any lists or bullet points are properly formatted
+- Complete all points and thoughts without cutting off mid-sentence
 
 DOCUMENTS:
 {context}
