@@ -9,11 +9,20 @@
 # openai>=1.3.8
 
 
+# streamlit
+# langchain==0.0.319
+# openai==0.28.1
+# chromadb==0.4.14
+# sentence-transformers
+# pypdf
+# pdfplumber
+
+
 streamlit
 langchain==0.0.319
 openai==0.28.1
 chromadb==0.4.14
-sentence-transformers
+sentence-transformers==2.2.2
+torch==1.13.1
 pypdf
 pdfplumber
-
