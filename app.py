@@ -1,11 +1,14 @@
 import os
 import streamlit as st
+import torch
 from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chat_models import ChatOpenAI
-from langchain.chains import create_qa_with_sources_chain
-from langchain.prompts import PromptTemplate
-from langchain.memory import ConversationBufferMemory
+
+# Force torch to use CPU before any models are loaded
+torch.set_grad_enabled(False)  # Disable gradient computation
+os.environ["CUDA_VISIBLE_DEVICES"] = ""  # Hide CUDA devices
+os.environ["TOKENIZERS_PARALLELISM"] = "false"  # Avoid warnings
 
 # ✅ Set up DeepSeek API with OpenAI-compatible endpoint
 os.environ["OPENAI_API_KEY"] = "sk-aa47d49919ad4a8795605774abad2b49"
