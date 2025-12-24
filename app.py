@@ -100,7 +100,7 @@ def main():
                     if section_filter != "All":
                         metadata_filter["section"] = section_filter
 
-                    # Retrieve documents using metadata filter
+                    # Retrieve relevant documents
                     docs = vectordb.max_marginal_relevance_search(
                         user_query,
                         k=6,
@@ -108,29 +108,30 @@ def main():
                         filter=metadata_filter
                     )
 
-                    # Format context
-                    context = "\n\n".join(
-                        [f"Document {i + 1}:\n{doc.page_content}" for i, doc in enumerate(docs)]
-                    )
+                    # Remove "Document #" — just join plain content
+                    context = "\n\n".join([doc.page_content for doc in docs])
 
-                    # Format prompt using template
+                    # Format the prompt
                     prompt = prompt_template.format(context=context, question=user_query)
 
-                    # Generate response
-                    response = llm.predict(prompt)
+                    # Streaming response
+                    response_container = st.empty()
+                    streamed_response = ""
 
-                    # Display assistant reply
-                    st.markdown(response)
+                    for chunk in llm.stream(prompt):
+                        streamed_response += chunk.content if chunk.content else ""
+                        response_container.markdown(streamed_response + "▌")
+
+                    response_container.markdown(streamed_response)
 
                     # Save to history
-                    st.session_state.messages.append({"role": "assistant", "content": response})
+                    st.session_state.messages.append({"role": "assistant", "content": streamed_response})
 
-                # Show sources
+                # Show source documents
                 with st.expander("📚 View Source Documents"):
-                    for i, doc in enumerate(docs):
+                    for doc in docs:
                         st.markdown(f"""
                         <div style="background:#f8f9fa;padding:10px;border-left:4px solid #1565c0;margin-bottom:10px">
-                        <strong>Source {i+1}</strong><br>
                         {doc.page_content[:500]}{'...' if len(doc.page_content) > 500 else ''}
                         </div>
                         """, unsafe_allow_html=True)
