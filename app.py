@@ -38,7 +38,8 @@ Please provide:
 - Clear section headings (e.g., "Summary", "Source", "Analysis", "Conclusion")
 - Bullet points or numbered lists where appropriate
 - Format financial data clearly (e.g., "HK$534 million")
-- Avoid using asterisks, underscores, or markdown formatting inside numbers or currency
+- Format financial figures like this: "HK$2,061 million (2025)" — use commas, the HK$ prefix, and a space before "million"
+- Do NOT use italics, bold, asterisks (*), or underscores (_) inside or around numbers or currency
 - Do not hallucinate — if not found in documents, say "Not enough information"
 """
 )
